@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Home</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #007bff;
+}
+
+h2 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li strong {
+    color: #007bff;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Welcome <%= student.name %> to Student Home</h1>
+    
+    <!-- Form to raise a query -->
+    <form action="/student/raisequery" method="POST">
+        <label for="querytitle">Query Title:</label><br>
+        <input type="text" id="querytitle" name="querytitle" required><br>
+        <label for="query">Enter your query:</label><br>
+        <textarea id="query" name="query" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Submit Query</button>
+    </form>
+
+    <!-- Display all queries -->
+    <h2>Queries:</h2>
+    <% if (student.queries && student.queries.length > 0) { %>
+        <ul>
+            <% student.queries.forEach(query => { %>
+                <li><strong><%= query.querytitle %>:</strong> <%= query.query %></li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No queries submitted yet.</p>
+    <% } %>
+</body>
+</html>

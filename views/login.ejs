@@ -1,0 +1,150 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Light gray background */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 10px; /* Slightly rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #333333; /* Dark gray text */
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 20px; /* Increased spacing between input groups */
+}
+
+.input-group label {
+  font-size: 16px;
+  color: #333333;
+  margin-bottom: 8px; /* Slightly increased space */
+}
+
+.input-group input {
+  padding: 10px; /* Increased padding for inputs */
+  font-size: 16px;
+  border: 1px solid #ced4da; /* Light gray border */
+  border-radius: 6px; /* Slightly rounded corners */
+}
+
+.login-btn {
+  background-color: #007bff; /* Blue button */
+  color: #ffffff;
+  padding: 12px 0; /* Increased padding top/bottom */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.admin-login {
+  margin-top: 30px; /* Increased margin */
+  border-top: 1px solid #cccccc; /* Light gray border */
+  padding-top: 30px; /* Increased padding */
+}
+
+.admin-login h2 {
+  color: #333333;
+  text-align: center;
+}
+
+.registration-links {
+  text-align: center;
+  margin-top: 20px; /* Increased margin */
+}
+
+/* Media Queries for responsiveness */
+@media only screen and (max-width: 600px) {
+  .login-container {
+    padding: 15px; /* Reduced padding */
+  }
+
+  .input-group label {
+    font-size: 14px; /* Reduced font size */
+  }
+
+  .input-group input {
+    font-size: 14px;
+  }
+
+  .login-btn {
+    font-size: 14px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Student Login</h2>
+    <form class="login-form" action="/student/login" method="post">
+      <div class="input-group">
+        <label for="registerNo">Register No:</label>
+        <input type="text" id="registerNo" name="registerNo" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+
+
+    <div class="registration-links">
+        <p><a href="/student/register">Register as Student</a></p>
+    </div>
+
+    <div class="admin-login">
+      <h2>Admin Login</h2>
+      <form class="login-form" action="/admin/login" method="post">
+        <div class="input-group">
+          <label for="adminId">Admin ID:</label>
+          <input type="text" id="adminId" name="adminId" required>
+        </div>
+        <div class="input-group">
+          <label for="adminPassword">Password:</label>
+          <input type="password" id="adminPassword" name="adminPassword" required>
+        </div>
+        <button type="submit" class="login-btn">Login as Admin</button>
+      </form>
+
+      <div class="registration-links">
+        <p><a href="/admin/register">Register as Admin</a></p>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+</html>
