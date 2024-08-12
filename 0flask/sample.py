@@ -14,7 +14,9 @@ def receive_data():
         "room1": Serialmonitor[0],
         "room2": Serialmonitor[1],
         "room3": Serialmonitor[2],
-        "sensorStatus": Serialmonitor[3]
+        "waterSensorStatus": Serialmonitor[3],
+        "IRSenSorStatus" : Serialmonitor[4],
+        "motionSensorStatus" : Serialmonitor[5]
     }
     with open('sample.json', 'w') as json_file:
         json.dump(status, json_file, indent=4)  # Write the room status to JSON file
