@@ -6,12 +6,16 @@ const session = require("express-session");
 const studentDataModel = require("./models/studentData");
 const studentQueryModel = require("./models/studentQuery");
 const AdminData = require("./models/adminData");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
 
 // Connect to MongoDB
-mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_KEY, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 
 // Check MongoDB connection
