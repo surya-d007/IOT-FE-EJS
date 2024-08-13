@@ -1,8 +1,8 @@
 {
   "room1": "unclean",
-  "room2": "unclean",
-  "room3": "clean",
+  "room2": "clean",
+  "room3": "unclean",
   "waterSensorStatus": "0",
-  "IRSenSorStatus": "0",
+  "IRSenSorStatus": "1",
   "motionSensorStatus": "0"
 }

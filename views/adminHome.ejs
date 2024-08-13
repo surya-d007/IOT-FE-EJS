@@ -1,163 +1,223 @@
 <!-- adminHome.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Home</title>
     <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Light gray background */
+        margin: 0;
+        padding: 20px;
+        color: #333; /* Text color */
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #007bff; /* Blue color for headings */
+      }
+
+      ul {
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      .room {
+        width: 100px;
+        height: 100px;
+
+        border: 2px solid black;
+        margin: 10px;
+        margin-right: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease; /* Smooth transition for background color */
+      }
+
+      .clean {
+        background-color: #28a745; /* Green color for clean rooms */
+      }
+
+      .unclean {
+        background-color: #dc3545; /* Red color for unclean rooms */
+      }
+
+      .room-info {
+        color: white;
+        text-align: center;
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid #ced4da; /* Light gray border */
+        margin: 20px 0;
+      }
+
+      .image-container {
+        display: inline;
+        position: absolute;
+        right: 300px;
+      }
+
+      /* Responsive styles */
+      @media screen and (max-width: 768px) {
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa; /* Light gray background */
-            margin: 0;
-            padding: 20px;
-            color: #333; /* Text color */
+          padding: 10px;
         }
 
-        h1, h2 {
-            text-align: center;
-            color: #007bff; /* Blue color for headings */
-        }
-
-        ul {
-            padding: 0;
+        h1,
+        h2 {
+          font-size: 24px; /* Decrease font size for smaller screens */
         }
 
         li {
-            margin-bottom: 20px;
+          margin-bottom: 15px;
         }
-
-        strong {
-            font-weight: bold;
-        }
-
-        .room {
-            width: 100px;
-            height: 100px;
-
-            border: 2px solid black;
-            margin: 10px;
-            margin-right: 60px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease; /* Smooth transition for background color */
-        }
-
-        .clean {
-            background-color: #28a745; /* Green color for clean rooms */
-        }
-
-        .unclean {
-            background-color: #dc3545; /* Red color for unclean rooms */
-        }
-
-        .room-info {
-            color: white;
-            text-align: center;
-        }
-
-        hr {
-            border: 0;
-            border-top: 1px solid #ced4da; /* Light gray border */
-            margin: 20px 0;
-        }
-
-        .image-container{
-            display: inline;
-            position: absolute;
-            right: 300px;
-        }
-
-        /* Responsive styles */
-        @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            h1, h2 {
-                font-size: 24px; /* Decrease font size for smaller screens */
-            }
-
-            li {
-                margin-bottom: 15px;
-            }
-        }
-
+      }
     </style>
-</head>
-<body style="padding-left: 100px;">
-<h1 style="margin-bottom: 150px;">Welcome Admin to Admin Home</h1>
+  </head>
+  <body style="padding-left: 100px">
+    <h1 style="margin-bottom: 150px">Welcome Admin to Admin Home</h1>
 
-<div class="room" id="room1">
-    <div class="room-info" id="room1-info"></div>
-</div>
-<div class="room" id="room2">
-    <div class="room-info" id="room2-info"></div>
-</div>
-<div class="room" id="room3">
-    <div class="room-info" id="room3-info"></div>
-</div>
+    <div class="room" id="room1">
+      <div class="room-info" id="room1-info"></div>
+    </div>
+    <div class="room" id="room2">
+      <div class="room-info" id="room2-info"></div>
+    </div>
+    <div class="room" id="room3">
+      <div class="room-info" id="room3-info"></div>
+    </div>
 
-    
-<div class="image-container">
-    <img id="sensorImage" src="" alt="Sensor Image" style="height: 150px; margin-bottom: 20px;">
-    <div id="waterStatus" style="text-align: center; font-weight: bold;"></div> <!-- Container for water status text -->
-</div>
+    <div class="image-container">
+      <img
+        id="sensorImage"
+        src=""
+        alt="Sensor Image"
+        style="height: 150px; margin-bottom: 20px"
+      />
+      <div id="waterStatus" style="text-align: center; font-weight: bold"></div>
+      <!-- Container for water status text -->
+    </div>
 
-<!-- Display all queries -->
-<h2 style="margin-top: 150px ;">Queries:</h2>
-<% if (queries.length > 0) { %>
+    <img
+      id="parkingImage"
+      src=""
+      alt="Parking Status"
+      style="height: 150px; margin-top: 20px; margin-left: 120px"
+    />
+    <div id="parkingStatus" style="text-align: center; font-weight: bold"></div>
+
+    <img
+      id="motionImage"
+      src=""
+      alt="Parking Status"
+      style="height: 150px; margin-top: 20px; margin-left: 120px"
+    />
+    <div id="motionStatus" style="text-align: center; font-weight: bold"></div>
+
+    <!-- Display all queries -->
+    <h2 style="margin-top: 150px">Queries:</h2>
+    <% if (queries.length > 0) { %>
     <ul>
-        <% queries.forEach(query => { %>
-            <li><strong>Name:</strong> <%= query.name %></li>
-            <li><strong>Register No:</strong> <%= query.registerNo %></li>
-            <li><strong>Phone No:</strong> <%= query.phoneNo %></li>
-            <li><strong>Query Title:</strong> <%= query.queries[0].querytitle %></li>
-            <li><strong>Query:</strong> <%= query.queries[0].query %></li>
-            <hr>
-        <% }) %>
+      <% queries.forEach(query => { %>
+      <li><strong>Name:</strong> <%= query.name %></li>
+      <li><strong>Register No:</strong> <%= query.registerNo %></li>
+      <li><strong>Phone No:</strong> <%= query.phoneNo %></li>
+      <li><strong>Query Title:</strong> <%= query.queries[0].querytitle %></li>
+      <li><strong>Query:</strong> <%= query.queries[0].query %></li>
+      <hr />
+      <% }) %>
     </ul>
-<% } else { %>
+    <% } else { %>
     <p>No queries submitted yet.</p>
-<% } %>
+    <% } %>
 
-<script>
-    function updateRoomStatus() {
-        fetch('http://127.0.0.1:5000/status')
-            .then(response => response.json())
-            .then(data => {
-                const room1 = document.getElementById('room1');
-                const room2 = document.getElementById('room2');
-                const room3 = document.getElementById('room3');
+    <script>
+      function updateRoomStatus() {
+        fetch("http://127.0.0.1:5000/status")
+          .then((response) => response.json())
+          .then((data) => {
+            const room1 = document.getElementById("room1");
+            const room2 = document.getElementById("room2");
+            const room3 = document.getElementById("room3");
 
-                room1.classList.remove('clean', 'unclean');
-                room2.classList.remove('clean', 'unclean');
-                room3.classList.remove('clean', 'unclean');
+            const parkingImage = document.getElementById("parkingImage");
+            const parkingStatus = document.getElementById("parkingStatus");
 
-                room1.classList.add(data.room1);
-                room2.classList.add(data.room2);
-                room3.classList.add(data.room3);
+            const motionImage = document.getElementById("motionImage");
+            const motionStatus = document.getElementById("motionStatus");
 
-                document.getElementById('room1-info').innerText = `Room 1: ${data.room1 === 'clean' ? 'Clean' : 'Unclean'}`;
-                document.getElementById('room2-info').innerText = `Room 2: ${data.room2 === 'clean' ? 'Clean' : 'Unclean'}`;
-                document.getElementById('room3-info').innerText = `Room 3: ${data.room3 === 'clean' ? 'Clean' : 'Unclean'}`;
+            room1.classList.remove("clean", "unclean");
+            room2.classList.remove("clean", "unclean");
+            room3.classList.remove("clean", "unclean");
 
-                const sensorImage = document.getElementById('sensorImage');
-                if (data.sensorStatus == 0) {
-                    sensorImage.src = "/blue.png"; // Blue image
-                    waterStatus.innerText = "Water 1 has enough water";
-                } else {
-                    sensorImage.src = "/red.png"; // Red image
-                    waterStatus.innerText = "Water 1 is going to be empty";
-                }
-            })
-            .catch(error => console.error('Error fetching room status:', error));
-    }
+            room1.classList.add(data.room1);
+            room2.classList.add(data.room2);
+            room3.classList.add(data.room3);
 
-    // Call updateRoomStatus initially and every 5 seconds
-    updateRoomStatus();
-    setInterval(updateRoomStatus, 300); // Changed interval to 5 seconds
-</script>
-</body>
+            document.getElementById("room1-info").innerText = `Room 1: ${
+              data.room1 === "clean" ? "Clean" : "Unclean"
+            }`;
+            document.getElementById("room2-info").innerText = `Room 2: ${
+              data.room2 === "clean" ? "Clean" : "Unclean"
+            }`;
+            document.getElementById("room3-info").innerText = `Room 3: ${
+              data.room3 === "clean" ? "Clean" : "Unclean"
+            }`;
+
+            const sensorImage = document.getElementById("sensorImage");
+            if (data.waterSensorStatus == 0) {
+              sensorImage.src = "/red.png"; // Red image
+              waterStatus.innerText = "Water 1 is going to be empty";
+            } else {
+              sensorImage.src = "/blue.png"; // Blue image
+              waterStatus.innerText = "Water 1 has enough water";
+            }
+
+            if (data.IRSenSorStatus == 1) {
+              parkingImage.src = "/no-parking.png"; // Car parked image
+              parkingStatus.innerText = "Parking Lot: Occupied";
+            } else {
+              parkingImage.src = "/free-parking.png"; // Empty space image
+              parkingStatus.innerText = "Parking Lot: Available";
+            }
+
+            if (data.motionSensorStatus == 1) {
+              motionImage.src = "/not-secure.png"; // Empty space image
+              motionStatus.innerText = "Some one Entered";
+            } else {
+              motionImage.src = "/secure.png"; // Car parked image
+              motionStatus.innerText = "Secure ";
+            }
+
+            if (data.IRSenSorStatus == 1) {
+              parkingImage.src = "/no-parking.png"; // Car parked image
+              parkingStatus.innerText = "Parking Lot: Occupied";
+            } else {
+              parkingImage.src = "/free-parking.png"; // Empty space image
+              parkingStatus.innerText = "Parking Lot: Available";
+            }
+          })
+          .catch((error) =>
+            console.error("Error fetching room status:", error)
+          );
+      }
+
+      // Call updateRoomStatus initially and every 5 seconds
+      updateRoomStatus();
+      setInterval(updateRoomStatus, 300); // Changed interval to 5 seconds
+    </script>
+  </body>
 </html>
